@@ -39,14 +39,14 @@ struct WelcomeView: View {
                     Spacer()
 
                     VStack(spacing: 14) {
-                        NavigationLink(destination: DashboardView()) {
+                        NavigationLink(destination: LoginView()) {
                             Text("Login")
                                 .frame(maxWidth: .infinity)
                                 .tint(.blue)
                         }
                         .buttonStyle(.borderedProminent)
 
-                        NavigationLink(destination: DashboardView()) {
+                        NavigationLink(destination: CreateAccountView()) {
                             Text("Create Account")
                                 .frame(maxWidth: .infinity)
                                 .tint(.blue)

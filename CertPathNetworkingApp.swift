@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CertPathNetworkingApp: App {
+    
+    @StateObject private var authManager = AuthManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(authManager)
         }
     }
 }
