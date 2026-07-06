@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
+    @EnvironmentObject var authManager: AuthManager
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -10,34 +13,34 @@ struct WelcomeView: View {
                     endPoint: .bottomTrailing
                 )
                 .ignoresSafeArea()
-
+                
                 VStack(spacing: 30) {
                     Spacer()
-
+                    
                     Image(systemName: "network")
                         .font(.system(size: 64))
                         .foregroundStyle(.white)
-
+                    
                     VStack(spacing: 10) {
                         Text("CertPath")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundStyle(.white)
-
+                        
                         Text("Networking")
                             .font(.title2)
                             .foregroundStyle(.white.opacity(0.9))
                     }
-
+                    
                     Text("Study smarter. Track progress. Build networking confidence.")
                         .font(.body)
                         .foregroundStyle(.white.opacity(0.95))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 36)
                         .padding(.top, 8)
-
+                    
                     Spacer()
-
+                    
                     VStack(spacing: 14) {
                         NavigationLink(destination: LoginView()) {
                             Text("Login")
@@ -45,31 +48,36 @@ struct WelcomeView: View {
                                 .tint(.blue)
                         }
                         .buttonStyle(.borderedProminent)
-
+                        
                         NavigationLink(destination: CreateAccountView()) {
                             Text("Create Account")
                                 .frame(maxWidth: .infinity)
                                 .tint(.blue)
                         }
                         .buttonStyle(.borderedProminent)
-
+                        
                         NavigationLink(destination: DashboardView()) {
                             Text("Continue as Guest")
                                 .frame(maxWidth: .infinity)
-                                .tint(.blue)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            authManager.continueAsGuest()
+                        })
                         .buttonStyle(.borderedProminent)
+                       
+                        
+                        Spacer()
                     }
-                    .padding(.horizontal, 40)
-
-                    Spacer()
+                    .padding()
                 }
-                .padding()
             }
         }
     }
 }
+    
+
 
 #Preview {
-    WelcomeView()
-}
+        WelcomeView()
+    }
+
