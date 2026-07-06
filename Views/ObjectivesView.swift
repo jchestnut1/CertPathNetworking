@@ -3,7 +3,7 @@ import SwiftUI
 struct ObjectivesView: View {
     var body: some View {
         List(sampleObjectives) { objective in
-            NavigationLink(destination: Text(objective.title)) {
+            NavigationLink(destination: ObjectiveDetailView(objective: objective)) {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("\(objective.recommendedOrder). \(objective.title)")
                         .font(.headline)
